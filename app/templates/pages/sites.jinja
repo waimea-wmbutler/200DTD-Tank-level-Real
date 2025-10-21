@@ -9,24 +9,24 @@
 
 {% block title %}
 
-    Flask Demo - All Things
+    Wisp Tank Reader - All Sites
 
 {% endblock %}
 
 
 {% block content %}
 
-    <h1>Things...</h1>
+    <h1></h1>
 
 
     <article>
 
         <ul>
-            {% for thing in things %}
+            {% for sites in sites %}
 
                 <li>
-                    <a href="/thing/{{ thing.id }}">
-                        {{ thing.name }}
+                    <a href="/sites/{{ sites.id }}">
+                        {{ sites.siteName }}
                     </a>
                 </li>
 
@@ -42,26 +42,18 @@
 
     <article>
 
-        <h3>Add a New Thing...</h3>
+        <h3>Add a New site...</h3>
 
         <form action="/add" method="POST">
 
             <input
                 type="text"
                 name="name"
-                placeholder="Name of new thing"
+                placeholder="Name of new site"
                 required
             >
 
-            <input
-                type="number"
-                name="price"
-                min="0"
-                placeholder="Price in dollars"
-                required
-            >
-
-            <button>Add the Thing</button>
+            <button>Add the site</button>
 
         </form>
 

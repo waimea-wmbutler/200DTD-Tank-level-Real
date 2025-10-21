@@ -44,27 +44,27 @@ def about():
 #-----------------------------------------------------------
 # Things page route - Show all the things, and new thing form
 #-----------------------------------------------------------
-@app.get("/things/")
+@app.get("/sites/")
 def show_all_things():
     with connect_db() as client:
         # Get all the things from the DB
-        sql = "SELECT id, name FROM things ORDER BY name ASC"
+        sql = "SELECT id, siteName FROM sites ORDER BY siteName ASC"
         params = []
         result = client.execute(sql, params)
-        things = result.rows
+        sites = result.rows
 
         # And show them on the page
-        return render_template("pages/things.jinja", things=things)
+        return render_template("pages/sites.jinja", sites=sites)
 
 
 #-----------------------------------------------------------
 # Thing page route - Show details of a single thing
 #-----------------------------------------------------------
-@app.get("/thing/<int:id>")
+@app.get("/site/<int:id>")
 def show_one_thing(id):
     with connect_db() as client:
         # Get the thing details from the DB
-        sql = "SELECT id, name, price FROM things WHERE id=?"
+        sql = "SELECT id, siteName, highLevel, lastLevel FROM information WHERE id=?"
         params = [id]
         result = client.execute(sql, params)
 
@@ -72,7 +72,7 @@ def show_one_thing(id):
         if result.rows:
             # yes, so show it on the page
             thing = result.rows[0]
-            return render_template("pages/thing.jinja", thing=thing)
+            return render_template("pages/site.jinja", thing=thing)
 
         else:
             # No, so show error
@@ -85,21 +85,22 @@ def show_one_thing(id):
 @app.post("/add")
 def add_a_thing():
     # Get the data from the form
-    name  = request.form.get("name")
-    price = request.form.get("price")
+    siteName  = request.form.get("Name")
+    lastLevel = request.form.get("Most Recent Level")
+    highLevel = request.form.get("Highest Level")
 
-    # Sanitise the text inputs
-    name = html.escape(name)
+    # Sanitize the text inputs
+    siteName = html.escape(siteName)
 
     with connect_db() as client:
         # Add the thing to the DB
-        sql = "INSERT INTO things (name, price) VALUES (?, ?)"
-        params = [name, price]
+        sql = "INSERT INTO sites (siteName, lastLevel, highLevel) VALUES (?, ?, ?)"
+        params = [siteName, lastLevel, highLevel]
         client.execute(sql, params)
 
         # Go back to the home page
-        flash(f"Thing '{name}' added", "success")
-        return redirect("/things")
+        flash(f"Site '{siteName}' added", "success")
+        return redirect("/sites")
 
 
 #-----------------------------------------------------------
@@ -109,12 +110,10 @@ def add_a_thing():
 def delete_a_thing(id):
     with connect_db() as client:
         # Delete the thing from the DB
-        sql = "DELETE FROM things WHERE id=?"
+        sql = "DELETE FROM sites WHERE id=?"
         params = [id]
         client.execute(sql, params)
 
         # Go back to the home page
-        flash("Thing deleted", "success")
-        return redirect("/things")
-
-
+        flash("Site deleted", "success")
+        return redirect("/sites")
