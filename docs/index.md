@@ -1,7 +1,6 @@
-# PROJECT NAME HERE
+# Water Tank Level Recorder For Wisp Electrical
 
-by YOUR NAME HERE
-
+by William Butler
 
 ---
 
@@ -9,7 +8,7 @@ by YOUR NAME HERE
 
 Replace this text with your project description and list the key features below
 
-- Feature 1 here
+- Contains all the sites which Wisp have a Level Reader
 - Feature 2 here
 - Feature 3 here
 - Feature 4 here

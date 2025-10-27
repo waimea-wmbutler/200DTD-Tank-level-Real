@@ -1,6 +1,6 @@
-# PROJECT NAME HERE
+# Water Tank Level Recorder For Wisp Electrical
 
-by YOUR NAME HERE
+by William Butler
 
 
 ---
@@ -20,8 +20,8 @@ Replace this text with your project description and list the key features below
 
 ## Project Links
 
-- [GitHub repo for the project](https://...)
-- [Project Documentation](https://...)
+- [GitHub repo for the project](https://waimea-wmbutler.github.io/200DTD-Tank-level-Real/)
+- [Project Documentation](https://waimea-wmbutler.github.io/200DTD-Tank-level-Real/)
 - [Live web app](https://...)
 
 
